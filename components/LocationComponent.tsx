@@ -22,13 +22,13 @@ const LocationComponent = () => {
         let message: any;
         console.log(error.code)
         switch (error.code) {
-            case 1: // PERMISSION_DENIED
+            case error.PERMISSION_DENIED:
                 message = "User denied the request for Geolocation.";
                 break;
-            case 2: // POSITION_UNAVAILABLE
-                message = "Location information is currently unavailable.";
+            case error.POSITION_UNAVAILABLE:
+                message = "Location information is unavailable.";
                 break;
-            case 3: // TIMEOUT
+            case error.TIMEOUT:
                 message = "The request to get user location timed out.";
                 break;
             default:
