@@ -19,11 +19,26 @@ const LocationComponent = () => {
     };
 
     const handleError = (error: any) => {
-        setLocation({
-            latitude: null,
-            longitude: null,
-            error: error.message
-        });
+        let message: any;
+        console.log(error.code)
+        switch (error.code) {
+            case 1: // PERMISSION_DENIED
+                message = "User denied the request for Geolocation.";
+                break;
+            case 2: // POSITION_UNAVAILABLE
+                message = "Location information is currently unavailable.";
+                break;
+            case 3: // TIMEOUT
+                message = "The request to get user location timed out.";
+                break;
+            default:
+                message = "An unknown error occurred.";
+                break;
+        }
+        setLocation((prevState: any) => ({
+            ...prevState,
+            error: message
+        }));
     };
 
     useEffect(() => {
